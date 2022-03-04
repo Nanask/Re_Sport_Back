@@ -1,4 +1,5 @@
 import { Exclude, Expose } from "class-transformer";
+import { Timestamp } from "typeorm";
 
 @Exclude()
 export class QnaDTO {
@@ -18,8 +19,8 @@ export class QnaDTO {
 	@Expose()
 	content: string;
 
-	@Expose()
-	date: Date;
+	// @Expose()
+	// date: Date;
 
 	@Expose()
 	count: number;

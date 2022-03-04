@@ -22,10 +22,10 @@ export class QnaController {
     return plainToInstance(QnaDTO, qna);
   }
 
-  @Get(':qna_seq')
+  @Get(':id')
   @ApiOperation({ summary: 'QnA 전체 목록', description: 'QnA를 조회합니다' })
   async findById(
-    @Param('qna_seq') id: number,
+    @Param('id') id: number,
   ): Promise<QnaDTO> {
     const qna = await this.qnaService.findById(id);
     if (!qna) {
@@ -41,38 +41,38 @@ export class QnaController {
     @Body() body: CreateQnaDTO
   ): Promise<CreateQnaDTO> {
     const qna = await this.qnaService.create(body);
-    console.log("qna", qna)
+    console.log("qna body", qna)
 
     if (!qna) {
-      throw new NotFoundException('ID에 해당하는 QnA를 찾을 수 없습니다');
+      throw new NotFoundException('데이터를 추가할 수 없습니다.');
     }
 
     return plainToInstance(CreateQnaDTO, qna);
   }
 
   @Put(':id')
-  @ApiOperation({ summary: 'QnA 전체 목록', description: 'QnA 전체 목록을 조회합니다' })
+  @ApiOperation({ summary: 'QnA 업데이트', description: 'QnA 데이터를 수정합니다.' })
   async update(
     @Param('id') id: number, @Body() body: UpdateQnaDTO,
   ): Promise<UpdateQnaDTO> {
     const qna = this.qnaService.update(id, body);
 
     if (!qna) {
-      throw new NotFoundException('ID에 해당하는 QnA를 찾을 수 없습니다');
+      throw new NotFoundException('데이터를 수정할 수 없습니다.');
     }
 
     return plainToInstance(UpdateQnaDTO, qna);
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'QnA 전체 목록', description: 'QnA 전체 목록을 조회합니다' })
+  @ApiOperation({ summary: 'QnA 삭제', description: 'QnA 데이터를 삭제합니다.' })
   async delete(
     @Param('id') id: number,
   ) {
     const qna = this.qnaService.delete(id);
 
     if (!qna) {
-      throw new NotFoundException('ID에 해당하는 QnA를 찾을 수 없습니다');
+      throw new NotFoundException('데이터를 삭제할 수 없습니다.');
     }
 
     return plainToInstance(QnaDTO, qna);

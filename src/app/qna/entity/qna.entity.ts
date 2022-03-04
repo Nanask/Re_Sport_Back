@@ -1,3 +1,4 @@
+import { Transform } from "class-transformer";
 import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('qna')
@@ -18,7 +19,7 @@ export class QnaEntity extends BaseEntity {
 	@Column()
 	content: string;
 
-	@Column()
+	@Column({ nullable: true })
 	date: Date;
 
 	@Column({ default: 0 })

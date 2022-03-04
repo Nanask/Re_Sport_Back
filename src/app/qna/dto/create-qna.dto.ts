@@ -1,4 +1,5 @@
 import { Exclude, Expose } from "class-transformer";
+import { Timestamp } from 'typeorm';
 
 @Exclude()
 export class CreateQnaDTO {
