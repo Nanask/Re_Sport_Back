@@ -1,0 +1,1 @@
+export type PayType = '유료' | '무료' | '유/무료';
